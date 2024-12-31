@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" type="text/css" href="cadd.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="logocss.css" media="screen" />
+</head>
+
+
+    <body>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Logo"> <!-- Substitua 'sua-imagem.png' pelo caminho da sua imagem -->
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="menu">
+                <a href="file:///C:/Users/Matheus%20Pinheiro/Desktop/ud/index.html">Home</a>
+                <a href="file:///C:/Users/Matheus%20Pinheiro/Desktop/ud/ENTRADA/index.html">Entrada</a>
+                <a href="file:///C:/Users/Matheus%20Pinheiro/Desktop/ud/SAIDA/index.html">Saída</a>
+                <a href="file:///C:/Users/Matheus%20Pinheiro/Desktop/ud/LISTAGEM/index.html">Listagem</a>
+                <a href="file:///C:/Users/Matheus%20Pinheiro/Desktop/ud/MAPEAMENTO/index.html">Mapeamento</a>
+            </div>
+        </nav>
+    
+        <script>
+            function toggleMenu() {
+                const menu = document.querySelector('nav .menu');
+                menu.classList.toggle('active');
+            }
+        </script>
+
+<!--menuuuuuuuuuuuuuuu-->
+
+<body>
+    <form id="formProduto">
+        <h2>Cadastro de Produto</h2>
+        
+        <!-- Campo Código -->
+        <input type="text" id="codigo" placeholder="Código" required>
+
+        <!-- Campo Produto com Datalist -->
+        <input type="text" id="produto" placeholder="Produto" list="produtosLista" required>
+        <datalist id="produtosLista">
+            <option value="GRAO COMUM">
+            <option value="GRAO BR100">
+            <option value="GRAO LIGHT">
+            <option value="GRAO GOLD">
+            <option value="MIOLO COMUM D40 EXP">
+            <option value="MIOLO COMUM D40 EXP DE 2º">
+            <!-- Adicione suas opções aqui -->
+        </datalist>
+
+        <!-- Campo Cor com Datalist -->
+        <input type="text" id="cor" placeholder="Cor" list="coresLista" required>
+        <datalist id="coresLista">
+            <option value="Vermelho">
+            <option value="Azul">
+            <option value="Verde">
+            <option value="Preto">
+            <!-- Adicione suas opções aqui -->
+        </datalist>
+
+        <!-- Campo Espessura com Datalist -->
+        <input type="text" id="espessura" placeholder="Espessura" list="espessurasLista" required>
+        <datalist id="espessurasLista">
+            <option value="1mm">
+            <option value="2mm">
+            <option value="3mm">
+            <option value="4mm">
+            <!-- Adicione suas opções aqui -->
+        </datalist>
+
+        <!-- Campo Peso -->
+        <input type="number" id="peso" placeholder="Peso" required>
+
+        <!-- Campo SKU -->
+        <input type="text" id="sku" placeholder="SKU (único)" required>
+
+        <!-- Botão para Cadastrar -->
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script>
+        // Função para salvar o produto no localStorage
+        function salvarProduto(produto) {
+            let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+            produtos.push(produto);
+            localStorage.setItem('produtos', JSON.stringify(produtos));
+        }
+
+        // Função para validar e adicionar um produto
+        document.getElementById('formProduto').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const codigo = document.getElementById('codigo').value;
+            const produto = document.getElementById('produto').value;
+            const cor = document.getElementById('cor').value;
+            const espessura = document.getElementById('espessura').value;
+            const peso = document.getElementById('peso').value;
+            const sku = document.getElementById('sku').value;
+
+            // Verificar se o SKU já existe
+            let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+            if (produtos.some(item => item.sku === sku)) {
+                alert('O SKU deve ser único!');
+                return;
+            }
+
+            const novoProduto = { codigo, produto, cor, espessura, peso, sku };
+            salvarProduto(novoProduto);
+
+            // Limpar o formulário após salvar
+            document.getElementById('formProduto').reset();
+            alert('Produto cadastrado com sucesso!');
+        });
+    </script>
+</body>
+</html>
