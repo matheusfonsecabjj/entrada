@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" type="text/css" href="cadastro.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="logo.css" media="screen" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu">
+            <a href="https://matheusfonsecabjj.github.io/home/">Home</a>
+            <a href="https://matheusfonsecabjj.github.io/entrada/">Entrada</a>
+            <a href="https://matheusfonsecabjj.github.io/saida/">Saída</a>
+            <a href="https://matheusfonsecabjj.github.io/lista/">Listagem</a>
+            <a href="https://matheusfonsecabjj.github.io/mapa/">Mapeamento</a>
+            <a href="https://matheusfonsecabjj.github.io/pedidos/">Espelho</a>
+        </div>
+    </nav>
+
+    <form id="formProduto">
+        <h2>Cadastro de Produto</h2>
+        
+        <input type="text" id="codigo" placeholder="Código" required>
+        <input type="text" id="produto" placeholder="Produto" list="produtosLista" required>
+        <datalist id="produtosLista">
+            <option value="GRAO COMUM">
+            <option value="GRAO BR100">
+            <option value="GRAO LIGHT">
+            <option value="GRAO GOLD">
+            <option value="MIOLO COMUM D40 EXP">
+            <option value="MIOLO COMUM D40 EXP DE 2º">
+        </datalist>
+        <input type="text" id="cor" placeholder="Cor" list="coresLista" required>
+        <datalist id="coresLista">
+            <option value="VERMELHO">
+            <option value="PRETO">
+            <option value="VERDE">
+            <option value="AZUL BIC">
+        </datalist>
+        <input type="text" id="espessura" placeholder="Espessura" list="espessurasLista" required>
+        <datalist id="espessurasLista">
+            <option value="1 mm">
+            <option value="2 mm">
+            <option value="3 mm">
+            <option value="4 mm">
+            <option value="5 mm">
+            <option value="6 mm">
+        </datalist>
+        <input type="number" id="peso" placeholder="Peso (ex.: 5.5)" step="any" required>
+        <input type="text" id="placas" placeholder="Placas (ex.: ABC1234)" required>
+        <input type="text" id="sku" placeholder="SKU (único)" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
